@@ -23,13 +23,10 @@ var map5 = {group:'@label',list:['option',{name:'',value:'@value'}]}
 
 $(function(){
   $('#hello').render(data1);
-  $('#users').render(data2);
-  $('#users2').render(data3);
-  $('#users2 span.age').bind('click',function(e){
-    e.preventDefault();
-    alert($(this).html());
-    return false;
-  })
+  $('#users>li').render(data2);
+  $('.users2').render(data3);
+  $_pt.debug = true;
   $('#opts>optgroup').render(data4);
   $('#server_opts>optgroup').render(data5,map5);
+  $_pt.debug = false;
 });

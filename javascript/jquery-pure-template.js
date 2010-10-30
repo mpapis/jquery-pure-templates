@@ -1,5 +1,5 @@
 /*
- * jQuery Pure Template plugin v 0.9
+ * jQuery Pure Template plugin v 0.9.01
  * Copyright 2010, Michal Papis <mpapis@niczsoft.com>
  * Licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
@@ -7,7 +7,7 @@
 
 (function($){
   $.fn.render = function(data,map){
-    $_pt.logO('this:',this)
+    $_pt.logO('rendering',this.selector)
     var current = this;
     var selector = current.selector;
     var template = current.data('_tp_template') || current;
@@ -31,13 +31,15 @@ $_pt.logO = function(){
 }
 
 $_pt.uniq_id = 1;
-$_pt.uniq = function() {
-  return '_pt_key'+$_pt.uniq_id++ + '_';
-}
+$_pt.uniq = function() { return '_pt_key'+$_pt.uniq_id++ + '_'; }
 
 //fill element with data
 $_pt.render = function(root,data,map,attr) {
-  $_pt.logO('selector:',root.selector,'root:',root,'data:',data,'map:',map,'attr:',attr);
+  if (attr) {
+    $_pt.logO('root:',root,'map:',map,'selector:',root.selector,'data:',data,'attr:',attr);
+  } else {
+    $_pt.logO('root:',root,'map:',map,'selector:',root.selector,'data:',data);
+  }
   var newElem;
   if (attr){
     root.attr(attr,data);
@@ -68,8 +70,8 @@ $_pt.render = function(root,data,map,attr) {
       var arr = key.split('@');
       attr = arr[1];
       key = arr[0];
-      newElem = $(root.selector+' '+key);
-      $_pt.render(newElem,val,map,attr);
+      newElem = ($.trim(key)==='') ? root : $(root.selector+' '+key);
+      $_pt.render(newElem, val, map, attr);
     }
   }
 };
