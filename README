@@ -1,0 +1,50 @@
+Easy script to map json data to pure html tree.
+
+Example html:
+    <div id="users"><a class="name"></a> Age of: <span class="age"></span></div>
+    <div>
+      <select id="opts">
+        <optgroup label="">
+          <option value=""></option>
+        </optgroup>
+      </select>
+    <div>
+
+Example data definitions:
+var users = [
+  {'.name':'Ben','.name@href':'#/a','.age':24},
+  {'.name':'Bob','.name@href':'#/b','.age':25},
+  {'.name':'Brad','.name@href':'#/c','.age':26}
+]
+var options = [
+  {group:'Third',list:[{name:'E',value:5},{name:'F',value:6}]},
+  {group:'Forth',list:[{name:'G',value:7},{name:'H',value:8}]}
+]
+
+Example mapping for options:
+var options_map = {group:'@label',list:['option',{name:'',value:'@value'}]}
+
+Calling rendering:
+  $('#users').render(users);
+  $('#options>optgroup').render(options,options_map);
+
+
+And the result html looks like:
+<div class="_pt_key4_0" id="users">
+  <a href="#/a" class="name">Ben</a> Age of: <span class="age">24</span>
+</div><div class="_pt_key5_1" id="users">
+  <a href="#/b" class="name">Bob</a> Age of: <span class="age">25</span>
+</div><div class="_pt_key6_2" id="users">
+  <a href="#/c" class="name">Brad</a> Age of: <span class="age">26</span>
+</div>
+<div id="options">
+  <select id="server_opts">
+    <optgroup class="_pt_key13_0" label="Third">
+      <option class="_pt_key14_0" value="5">E</option><option class="_pt_key15_1" value="6">F</option>
+    </optgroup><optgroup class="_pt_key16_1" label="Forth">
+      <option class="_pt_key17_0" value="7">G</option><option class="_pt_key18_1" value="8">H</option>
+    </optgroup>
+  </select>
+</div>
+
+Some aditional information can be found on author page: http://niczsoft.com/tag/pure/
