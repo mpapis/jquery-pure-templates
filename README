@@ -19,9 +19,9 @@ render:
 output:
   <div class="_pt_key4_0" class="users">
     <a href="#/a" class="name">Ben</a> Age of: <span class="age">24</span>
-  </div><div class="_pt_key5_1" class="users">
+  </div><div class="_pt_key4_1" class="users">
     <a href="#/b" class="name">Bob</a> Age of: <span class="age">25</span>
-  </div><div class="_pt_key6_2" class="users">
+  </div><div class="_pt_key4_2" class="users">
     <a href="#/c" class="name">Brad</a> Age of: <span class="age">26</span>
   </div>
 
@@ -67,9 +67,9 @@ output (for selectors and mapping):
   <div id="options">
     <select id="server_opts">
       <optgroup class="_pt_key13_0" label="Third">
-        <option class="_pt_key14_0" value="5">E</option><option class="_pt_key15_1" value="6">F</option>
-      </optgroup><optgroup class="_pt_key16_1" label="Forth">
-        <option class="_pt_key17_0" value="7">G</option><option class="_pt_key18_1" value="8">H</option>
+        <option class="_pt_key14_0" value="5">E</option><option class="_pt_key14_1" value="6">F</option>
+      </optgroup><optgroup class="_pt_key13_1" label="Forth">
+        <option class="_pt_key15_0" value="7">G</option><option class="_pt_key15_1" value="8">H</option>
       </optgroup>
     </select>
   </div>
