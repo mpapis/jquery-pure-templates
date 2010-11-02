@@ -25,8 +25,6 @@ $(function(){
   $('#hello').render(data1);
   $('#users>li').render(data2);
   $('.users2').render(data3);
-  $_pt.debug = true;
   $('#opts>optgroup').render(data4);
   $('#server_opts>optgroup').render(data5,map5);
-  $_pt.debug = false;
 });
