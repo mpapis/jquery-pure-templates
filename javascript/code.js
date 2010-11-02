@@ -21,10 +21,14 @@ var data5 = [
 ]
 var map5 = {group:'@label',list:['option',{name:'',value:'@value'}]}
 
+var data6 = {'.name':'Michal','.name@href':'#/michal','.age':30};
+
 $(function(){
   $('#hello').render(data1);
   $('#users>li').render(data2);
   $('.users2').render(data3);
   $('#opts>optgroup').render(data4);
-  $('#server_opts>optgroup').render(data5,map5);
+  $('#server_opts>optgroup').render(data5,{map:map5});
+  $('.entry').render(data3,{template:'entry_show_template'});
+  $('.entry').render(data6,{template:'entry_show_template'});
 });

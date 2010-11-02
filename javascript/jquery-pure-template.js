@@ -1,27 +1,20 @@
 /*
- * jQuery Pure Template plugin v 0.9.02
+ * jQuery Pure Template plugin v 0.9.03
  * Copyright 2010, Michal Papis <mpapis@niczsoft.com>
  * Licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  */
 
 (function($){
+  var pt = {};
 
-  var pt = {debug:true};
-
-  pt.logO = function(){
-    if (!pt.debug) return;
-    var opts = [];
-    for (var i = 0; i < arguments.length; i++) opts.push(arguments[i]);
-    console.log(opts);
-  }
-
+  //unique key initialization
   pt.uniq_id = 1;
-  pt.uniq = function() {return '_pt_key'+pt.uniq_id++ + '_';}
+  //unique key generator
+  pt.uniq = function() {return '_pt_key' + pt.uniq_id++ + '_' ;}
 
   //fill element with data
   pt.render = function(root,data,map,attr) {
-    pt.logO('root:',root,'map:',map,'selector:',root.selector,'data:',data,'attr:',attr);
     var newElem;
     if (attr){
       root.attr(attr,data);
@@ -48,6 +41,7 @@
       root.html(''+data);
     } else {
       for (var key in data) {
+        if (!data.hasOwnProperty(key)) break;
         var val = data[key];
         if (map && (map[key] || map[key]==="")) {
           key = map[key];
@@ -65,8 +59,14 @@
     }
   };
 
-  $.fn.render = function(data,map){
-    pt.render(this,data,map);
+  $.fn.render = function(data,options){
+    options = options || {};
+    var target = this;
+    if (options.template) {
+      target = $($('#'+options.template).html());
+      target.selector = this.selector;
+      this.replaceWith(target);
+    }
+    pt.render(target,data,options.map);
   }
 })(jQuery)
-

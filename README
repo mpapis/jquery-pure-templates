@@ -60,7 +60,7 @@ var options = [
 var options_map = {group:'@label',list:['option',{name:'',value:'@value'}]}
 
 render:
-  $('#options>optgroup').render(options,options_map);
+  $('#options>optgroup').render(options,{map:options_map});
 
 
 output (for selectors and mapping):
@@ -73,5 +73,21 @@ output (for selectors and mapping):
       </optgroup>
     </select>
   </div>
+
+Using template to render content:
+In header section define html script (keep unique ids):
+    <script id="entry_show_template" defer type="text/html">
+      <div class="entry">
+        Age: <span class="age"></span> <a class="name" href="#"></a>
+      </div>
+    </script>
+
+In document body place the same as root of template:
+    <div class="entry"></div>
+
+Finally render users from first example:
+    $('.entry').render(users,{template:'entry_show_template'});
+
+Using templates allows to call render code many times on the same selector, for only once filling content no need of templates is needed.
 
 Some additional information can be found on author page: http://niczsoft.com/tag/pure/
